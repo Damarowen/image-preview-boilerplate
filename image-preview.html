@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Preview Image Before Upload | CodingNepal</title> -->
+</head>
+
+<body>
+
+    
+    <img src="">
+    <button onclick="preview()">Choose a file</button>
+    <input id="inputBtn" type="file" hidden>
+
+
+
+    <script>
+        const defaultBtn = document.querySelector("#default-btn");
+        const img = document.querySelector("img");
+
+        function preview() {
+            inputBtn.click();
+        }
+
+        //This event is triggered each time a file is created, modified, or deleted on a given storage area.
+        inputBtn.addEventListener("change", function () {
+            // ini mengambil file yang dipiluh, file yang dipilih akan return dalam bentuk array
+            // maka dikasi [0]
+            const file = this.files[0];
+
+            //memangil reader
+            const reader = new FileReader();
+
+            //memanggil property onload
+            reader.onload = function () {
+                const result = reader.result;
+                img.src = result;
+            }
+
+            //memanggil property readAsDataUrl
+            reader.readAsDataURL(file);
+
+        });
+    </script>
+
+</body>
+
+</html>
